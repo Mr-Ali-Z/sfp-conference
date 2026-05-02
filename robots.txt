@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mr-ali-z.github.io/sfp-conference/sitemap.xml

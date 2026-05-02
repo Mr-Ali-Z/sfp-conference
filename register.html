@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register | National Commercial Space Conference 2026</title>
+<meta name="description" content="Register for the National Commercial Space Conference 2026 in Islamabad. Standard, student, industry, and press tickets available.">
+<meta name="theme-color" content="#0B1E3F">
+<link rel="icon" type="image/svg+xml" href="images/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="credit-bar" role="complementary" aria-label="Site author">
+  <div class="credit-bar-inner">
+    <span>National Commercial Space Conference 2026</span>
+    <span>Made by <strong>Daniyal Ahmed</strong></span>
+  </div>
+</div>
+<header class="site-header" role="banner">
+  <div class="nav-wrap">
+    <a href="index.html" class="brand" aria-label="Space Frontiers Pakistan home">
+      <img src="images/logo.svg" alt="" class="brand-mark" width="36" height="36">
+      <span class="brand-text">Space Frontiers Pakistan<small>National Commercial Space Conference</small></span>
+    </a>
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <nav aria-label="Primary">
+      <ul id="primary-nav" class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="agenda.html">Agenda</a></li>
+        <li><a href="speakers.html">Speakers</a></li>
+        <li><a href="expo.html">Expo</a></li>
+        <li><a href="register.html" class="cta active" aria-current="page">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-header">
+    <div class="page-header-inner">
+      <h1>Register for the Conference</h1>
+      <p>Pick a ticket type and fill in your details. You will receive a confirmation email within 10 minutes; if not, please check your spam folder.</p>
+    </div>
+  </section>
+
+  <section class="section section-tinted">
+    <div class="section-inner">
+      <div class="form-wrap">
+
+        <div class="form-success" id="success" role="status" aria-live="polite">
+          <h3>Registration received.</h3>
+          <p class="mb-0">Thank you. A confirmation email is on its way. Please save the conference dates: 18 &ndash; 20 September 2026.</p>
+        </div>
+
+        <form id="register-form" novalidate>
+
+          <div class="form-row" data-required="true" data-type="text">
+            <label for="fullname">Full Name<span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="fullname" name="fullname" autocomplete="name" required aria-required="true">
+            <div class="error-msg" id="err-fullname">Please enter your full name.</div>
+          </div>
+
+          <div class="form-row" data-required="true" data-type="email">
+            <label for="email">Email<span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" required aria-required="true">
+            <div class="error-msg" id="err-email">Please enter a valid email address.</div>
+          </div>
+
+          <div class="form-row" data-required="true" data-type="tel">
+            <label for="phone">Phone<span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" required aria-required="true" placeholder="+92 300 0000000">
+            <div class="error-msg" id="err-phone">Please enter a valid phone number (digits, spaces, + allowed).</div>
+          </div>
+
+          <div class="form-row" data-required="false">
+            <label for="org">Organisation</label>
+            <input type="text" id="org" name="org" autocomplete="organization">
+            <div class="help">University, employer, or independent.</div>
+          </div>
+
+          <div class="form-row" data-required="true" data-type="radio">
+            <label>Ticket Type<span class="req" aria-hidden="true">*</span></label>
+            <div class="radio-group" role="radiogroup" aria-required="true">
+              <label class="radio-option"><input type="radio" name="ticket" value="standard" required> <span>Standard &mdash; PKR 12,000</span></label>
+              <label class="radio-option"><input type="radio" name="ticket" value="student"> <span>Student &mdash; PKR 4,000</span></label>
+              <label class="radio-option"><input type="radio" name="ticket" value="industry"> <span>Industry &mdash; PKR 25,000</span></label>
+              <label class="radio-option"><input type="radio" name="ticket" value="press"> <span>Press &mdash; complimentary</span></label>
+            </div>
+            <div class="error-msg" id="err-ticket">Please choose a ticket type.</div>
+          </div>
+
+          <div class="form-row" data-required="false">
+            <label for="dietary">Dietary Requirements</label>
+            <textarea id="dietary" name="dietary" placeholder="e.g. vegetarian, halal, allergies"></textarea>
+            <div class="help">Optional. Used only for catering on the day.</div>
+          </div>
+
+          <div class="checkbox-row" data-required="true" data-type="checkbox">
+            <input type="checkbox" id="consent" name="consent" required aria-required="true">
+            <label for="consent">I consent to my data being processed for this event in line with the privacy notice.<span class="req" aria-hidden="true">*</span></label>
+          </div>
+          <div class="error-msg" id="err-consent" style="margin-top:-12px; margin-bottom:14px;">You must consent to register.</div>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit Registration</button>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <h4>Space Frontiers Pakistan</h4>
+      <p>National Commercial Space Conference, Pak-China Friendship Center, Islamabad. 18 &ndash; 20 September 2026.</p>
+    </div>
+    <div class="footer-col"><h4>Conference</h4><ul>
+      <li><a href="agenda.html">Agenda</a></li>
+      <li><a href="speakers.html">Speakers</a></li>
+      <li><a href="expo.html">Expo</a></li>
+      <li><a href="register.html">Register</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul>
+      <li><a href="mailto:hello@spacefrontiers.example">hello@spacefrontiers.example</a></li>
+      <li><a href="tel:+92510000000">+92 51 000 0000</a></li>
+      <li>Islamabad, Pakistan</li>
+    </ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Accessibility</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Space Frontiers Pakistan. All rights reserved.</span>
+    <span>Site built for Unit 13 coursework, Pearson BTEC HND Computing.</span>
+  <div class="footer-credit">Made by <strong>Daniyal Ahmed</strong> &middot; Pearson BTEC HND Computing, Unit 13</div>
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script src="js/register.js" defer></script>
+</body>
+</html>

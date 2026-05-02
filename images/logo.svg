@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Space Frontiers Pakistan logo">
+  <circle cx="32" cy="32" r="28" fill="#0B1E3F" stroke="#D9822B" stroke-width="2"/>
+  <ellipse cx="32" cy="32" rx="26" ry="9" fill="none" stroke="#D9822B" stroke-width="1.5" transform="rotate(-22 32 32)"/>
+  <circle cx="32" cy="32" r="9" fill="#1F3A68" stroke="#F4F7FB" stroke-width="1"/>
+  <circle cx="22" cy="20" r="1.2" fill="#F4F7FB"/>
+  <circle cx="48" cy="28" r="1" fill="#F4F7FB"/>
+  <circle cx="14" cy="42" r="1.4" fill="#F4F7FB"/>
+  <circle cx="50" cy="48" r="1.1" fill="#F4F7FB"/>
+</svg>
