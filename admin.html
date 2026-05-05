@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Dashboard | Space Frontiers Pakistan</title>
+<meta name="description" content="Admin dashboard for the National Commercial Space Conference 2026 — view and manage registrations.">
+<meta name="theme-color" content="#0B1E3F">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="images/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  /* Admin-specific styles */
+  .admin-wrap { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+  .login-card {
+    max-width: 420px; margin: 60px auto; background: #fff; padding: 30px;
+    border-radius: 8px; border: 1px solid var(--line); box-shadow: var(--shadow);
+  }
+  .login-card h2 { margin: 0 0 8px; color: var(--navy); }
+  .login-card p { color: var(--slate-soft); font-size: 0.92rem; margin: 0 0 18px; }
+  .login-card input[type="password"] {
+    width: 100%; padding: 11px 14px; border: 1.5px solid var(--line);
+    border-radius: 6px; font-family: var(--body); font-size: 1rem; margin-bottom: 14px;
+  }
+  .login-card .err { color: #C0392B; font-size: 0.88rem; margin: -8px 0 14px; min-height: 18px; }
+  .stats-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px; margin-bottom: 24px;
+  }
+  .stat-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px; text-align: center;
+  }
+  .stat-card .num {
+    font-family: var(--display); font-size: 2rem; font-weight: 700;
+    color: var(--navy); display: block;
+  }
+  .stat-card .lbl {
+    color: var(--slate-soft); font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 0.06em; margin-top: 4px;
+  }
+  .toolbar {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;
+    align-items: center;
+  }
+  .toolbar input[type="search"] {
+    flex: 1; min-width: 200px; padding: 9px 14px;
+    border: 1.5px solid var(--line); border-radius: 6px;
+    font-family: var(--body); font-size: 0.95rem;
+  }
+  .toolbar select {
+    padding: 9px 14px; border: 1.5px solid var(--line); border-radius: 6px;
+    font-family: var(--body); font-size: 0.95rem; background: #fff;
+  }
+  .toolbar .btn { padding: 9px 18px; font-size: 0.92rem; }
+  .btn-danger {
+    background: #C0392B; color: #fff;
+  }
+  .btn-danger:hover, .btn-danger:focus { background: #962f23; color: #fff; text-decoration: none; }
+  .data-table {
+    width: 100%; background: #fff; border-collapse: collapse;
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(11,30,63,0.06);
+  }
+  .data-table thead th {
+    background: var(--navy); color: #fff; font-family: var(--display);
+    font-weight: 600; font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 0.04em; padding: 12px 14px; text-align: left;
+  }
+  .data-table tbody td {
+    padding: 11px 14px; border-bottom: 1px solid var(--line);
+    font-size: 0.9rem; color: var(--slate);
+  }
+  .data-table tbody tr:nth-child(even) { background: var(--white); }
+  .data-table tbody tr:hover { background: rgba(31, 58, 104, 0.06); }
+  .ticket-tag {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 0.78rem; font-weight: 600;
+  }
+  .ticket-standard { background: #DDEBF7; color: var(--cosmic); }
+  .ticket-student  { background: #E8F5E8; color: #2D6A2D; }
+  .ticket-industry { background: #FEF1E2; color: var(--orange-dark); }
+  .ticket-press    { background: #F1E8F7; color: #6B3D8C; }
+  .empty-state {
+    text-align: center; padding: 60px 20px; background: #fff;
+    border: 1px dashed var(--line); border-radius: 8px; color: var(--slate-soft);
+  }
+  .empty-state h3 { color: var(--navy); margin: 0 0 8px; font-size: 1.1rem; }
+  @media (max-width: 720px) {
+    .data-table thead { display: none; }
+    .data-table, .data-table tbody, .data-table tr, .data-table td { display: block; }
+    .data-table tr {
+      border: 1px solid var(--line); border-radius: 8px;
+      margin-bottom: 12px; padding: 10px; background: #fff;
+    }
+    .data-table td { padding: 6px 0; border-bottom: none; }
+    .data-table td:before {
+      content: attr(data-label) ":  "; font-weight: 600; color: var(--navy);
+    }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="credit-bar" role="complementary" aria-label="Site author">
+  <div class="credit-bar-inner">
+    <span>National Commercial Space Conference 2026 — Admin</span>
+    <span>Made by <strong>Daniyal Ahmed</strong></span>
+  </div>
+</div>
+
+<header class="site-header" role="banner">
+  <div class="nav-wrap">
+    <a href="index.html" class="brand" aria-label="Space Frontiers Pakistan home">
+      <img src="images/logo.svg" alt="" class="brand-mark" width="36" height="36">
+      <span class="brand-text">Space Frontiers Pakistan<small>Admin Dashboard</small></span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-list">
+        <li><a href="index.html">Public Site</a></li>
+        <li><a href="admin.html" class="active" aria-current="page">Admin</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Login screen (shown until correct password) -->
+  <section id="login-section" class="section section-tinted">
+    <div class="admin-wrap">
+      <div class="login-card">
+        <h2>Admin Login</h2>
+        <p>Enter the admin password to view conference registrations.</p>
+        <form id="login-form" autocomplete="off">
+          <label for="admin-password" class="sr-only">Password</label>
+          <input type="password" id="admin-password" placeholder="Password" required>
+          <div class="err" id="login-err" role="alert" aria-live="polite"></div>
+          <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+        </form>
+        <p style="margin-top:18px;font-size:0.82rem;color:var(--slate-soft);">
+          Demo password is <code>sfp2026</code>. In production this would be replaced with
+          a real authentication system (e.g. Firebase Auth or an OAuth provider).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard (hidden until login) -->
+  <section id="dashboard-section" class="section section-tinted" hidden>
+    <div class="admin-wrap">
+
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px;align-items:flex-end;">
+        <div>
+          <h1 style="margin-bottom:6px;">Registrations Dashboard</h1>
+          <p style="color:var(--slate-soft);margin:0;">
+            Conference registrations stored locally in this browser.
+          </p>
+        </div>
+        <button id="logout-btn" class="btn btn-outline">Sign out</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row" id="stats-row">
+        <div class="stat-card"><span class="num" id="count-total">0</span><div class="lbl">Total Registrations</div></div>
+        <div class="stat-card"><span class="num" id="count-standard">0</span><div class="lbl">Standard</div></div>
+        <div class="stat-card"><span class="num" id="count-student">0</span><div class="lbl">Student</div></div>
+        <div class="stat-card"><span class="num" id="count-industry">0</span><div class="lbl">Industry</div></div>
+        <div class="stat-card"><span class="num" id="count-press">0</span><div class="lbl">Press</div></div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <input type="search" id="search-input" placeholder="Search by name, email, or organisation" aria-label="Search registrations">
+        <select id="ticket-filter" aria-label="Filter by ticket type">
+          <option value="all">All ticket types</option>
+          <option value="standard">Standard</option>
+          <option value="student">Student</option>
+          <option value="industry">Industry</option>
+          <option value="press">Press</option>
+        </select>
+        <button id="export-btn" class="btn btn-secondary">Export CSV</button>
+        <button id="clear-btn" class="btn btn-danger">Clear All</button>
+      </div>
+
+      <!-- Table -->
+      <div id="table-area">
+        <table class="data-table" id="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Submitted</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Organisation</th>
+              <th>Ticket</th>
+              <th>Dietary</th>
+            </tr>
+          </thead>
+          <tbody id="data-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="empty-state" hidden>
+        <h3>No registrations yet</h3>
+        <p>When users submit the registration form, they will appear here.</p>
+      </div>
+
+      <p style="margin-top:24px;font-size:0.82rem;color:var(--slate-soft);">
+        <strong>Storage notice:</strong> registrations are stored in this browser's
+        <code>localStorage</code> only. They are not transmitted to any server. This is
+        appropriate for the assignment MVP. For a production deployment SFP would
+        connect this dashboard to a real database (e.g. Firebase Firestore, Supabase,
+        or a Cloudflare Workers + D1 setup).
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-bottom" style="border-top:none;">
+    <span>&copy; 2026 Space Frontiers Pakistan.</span>
+  <div class="footer-credit">Made by <strong>Daniyal Ahmed</strong> &middot; Pearson BTEC HND Computing, Unit 13</div>
+  </div>
+</footer>
+
+<script src="js/admin.js" defer></script>
+</body>
+</html>

@@ -74,9 +74,33 @@
     });
   });
 
+  function saveSubmission() {
+    var record = {
+      id: Date.now(),
+      timestamp: new Date().toISOString(),
+      fullname: form.fullname.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      organisation: form.org.value.trim(),
+      ticket: (form.querySelector('input[name="ticket"]:checked') || {}).value || '',
+      dietary: form.dietary.value.trim(),
+      consent: form.consent.checked
+    };
+    var key = 'sfp_registrations';
+    var list = [];
+    try {
+      list = JSON.parse(localStorage.getItem(key) || '[]');
+      if (!Array.isArray(list)) list = [];
+    } catch (e) { list = []; }
+    list.push(record);
+    try { localStorage.setItem(key, JSON.stringify(list)); }
+    catch (e) { console.warn('Could not save registration locally:', e); }
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!validate()) return;
+    saveSubmission();
     success.classList.add('show');
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
     form.reset();
